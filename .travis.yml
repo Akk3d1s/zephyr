@@ -1,0 +1,48 @@
+sudo: required
+services:
+  - docker
+
+addons:
+apt:
+  packages:
+    - oracle-java8-installer
+    - maven
+
+cache:
+  bundler: true
+  yarn: true
+  docker: true
+  directories:
+    - .autoconf
+    - $HOME/.m2
+    - $HOME/docker
+
+language: java
+install: true
+
+jdk:
+  - oraclejdk8
+
+before_install:
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+
+script:
+  - mvn clean install
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  
+before_cache:
+  - mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+
+notifications:
+  email:
+    recipients:
+      - info@deacix.de
+    on_success: always
+    on_failure: always
+
+addons:
+  srcclr: true
+  sonarqube: true
+  sauce_connect: true
