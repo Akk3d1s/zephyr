@@ -1,2 +1,2 @@
 # White Paper
-Zeyphyr network and crypto currency with extra application layer. 
+Zephyr network and crypto currency with extra application layer. 

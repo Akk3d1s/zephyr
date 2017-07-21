@@ -1,2 +1,2 @@
 # zephyr
-Zephyr network
+Zephyr network and crypto currency with extra application layer. 
