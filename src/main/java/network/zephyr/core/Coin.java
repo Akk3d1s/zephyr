@@ -1,8 +1,8 @@
 package network.zephyr.core;
 
-import com.sun.istack.internal.Nullable;
 import org.apache.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.List;
 
