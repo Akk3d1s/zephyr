@@ -18,6 +18,18 @@ all this app supported nodes and accessible only with the right private key.
 
 #### Node registration
 Each node needs to be registrated on other nodes. It should be a main node existing, to have a failover discovery 
-service for the nodes. 
+service for the nodes. Discovery can be managed may be with Zookeeper.
 On the registration process the requesting node will share own public key with the connected node. All nodes will share the
 known nodes with each other.
+
+#### Coin
+The Zephyr coin is self the block, simple object with set of transactions inside. Each transaction descibes how many parts
+of the current coin are transfered from and to which wallet address. The coins self should be create with Proof of Work based on
+mathematic research. May be a calculation of a prime number. The coins should be generated and signed by 13 private keys
+with a limit amount before the network will goes live. The keys should be destroyed after the generation process.
+Alternative solution could be kind of Proof of Authenticity.
+The coin size should be not limited. Every transaction will be stored inside of the coin. That is a problem in a global
+blockchain, because every member needs to download maybe a very big block. In case of Sephyr only the members of
+the coin transactions and may be a "master" server need to store the whole block / coin.
+
+The target of the system is not the coin. It is the whole environment with the application layer.
